@@ -40,6 +40,11 @@ public class GUI extends javax.swing.JFrame {
         RadioTable = new javax.swing.JTable();
 
         jMAdd.setText("hinzufügen");
+        jMAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMAddActionPerformed(evt);
+            }
+        });
         jPopupMenu1.add(jMAdd);
 
         jMBandHide.setText("Band verstecken");
@@ -69,6 +74,16 @@ public class GUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAddActionPerformed
+        SenderDlg dl = new SenderDlg(this,true);
+        dl.setVisible(true);
+        if(dl.isOk()){
+            bl.add(dl.getS());
+        }
+        
+        
+    }//GEN-LAST:event_jMAddActionPerformed
 
     /**
      * @param args the command line arguments

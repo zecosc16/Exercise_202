@@ -5,7 +5,9 @@
  */
 package GUI;
 
+import bl.Sender;
 import java.awt.Component;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
@@ -17,7 +19,24 @@ public class SenderTableRenderer implements TableCellRenderer{
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JLabel label = new JLabel();
+        Sender s = (Sender) value;
+        
+        switch(column){
+            case 0:
+                label.setText(s.getSendername());
+                break;
+            case 1:
+                label.setText(String.format("%.2f", s.getFrequenz()));
+                break;
+            case 2:
+                label.setText(s.getBand());
+                break;
+            default:label.setText("??");
+                
+        }
+        return label;
+        
     }
     
 }
