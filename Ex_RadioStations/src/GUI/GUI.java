@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ex_radiostations;
+package GUI;
+
+import bl.SenderTableModel;
 
 /**
  *
@@ -11,11 +13,14 @@ package ex_radiostations;
  */
 public class GUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form GUI
-     */
+    private SenderTableModel bl = new SenderTableModel();
+    
     public GUI() {
         initComponents();
+        
+        RadioTable.setModel(bl);
+        RadioTable.setDefaultRenderer(Object.class, new SenderTableRenderer());
+        
     }
 
     /**
