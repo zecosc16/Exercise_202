@@ -48,9 +48,19 @@ public class GUI extends javax.swing.JFrame {
         jPopupMenu1.add(jMAdd);
 
         jMBandHide.setText("Band verstecken");
+        jMBandHide.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMBandHideActionPerformed(evt);
+            }
+        });
         jPopupMenu1.add(jMBandHide);
 
         jMBandShow.setText("Band anzeigen");
+        jMBandShow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMBandShowActionPerformed(evt);
+            }
+        });
         jPopupMenu1.add(jMBandShow);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,6 +94,14 @@ public class GUI extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jMAddActionPerformed
+
+    private void jMBandHideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMBandHideActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMBandHideActionPerformed
+
+    private void jMBandShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMBandShowActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMBandShowActionPerformed
 
     /**
      * @param args the command line arguments
