@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import bl.Sender;
 import bl.SenderTableModel;
 
 /**
@@ -20,6 +21,9 @@ public class GUI extends javax.swing.JFrame {
         
         RadioTable.setModel(bl);
         RadioTable.setDefaultRenderer(Object.class, new SenderTableRenderer());
+        bl.add(new Sender("Kronehit", "FM", 182.3));
+        bl.add(new Sender("FM4", "FM", 123.1));
+        bl.add(new Sender("Ö3", "AM", 92.3));
         
     }
 
@@ -96,11 +100,11 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMAddActionPerformed
 
     private void jMBandHideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMBandHideActionPerformed
-        // TODO add your handling code here:
+        bl.updateColBand(false);
     }//GEN-LAST:event_jMBandHideActionPerformed
 
     private void jMBandShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMBandShowActionPerformed
-        // TODO add your handling code here:
+        bl.updateColBand(true);
     }//GEN-LAST:event_jMBandShowActionPerformed
 
     /**

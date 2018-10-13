@@ -9,7 +9,7 @@ package bl;
  *
  * @author oskar
  */
-public class Sender {
+public class Sender implements Comparable<Sender>{
     private String Sendername,Band;
     private double frequenz;
 
@@ -30,5 +30,15 @@ public class Sender {
     public double getFrequenz() {
         return frequenz;
     }
+
+    @Override
+    public int compareTo(Sender o) {
+        if(this.frequenz<o.frequenz)
+            return -1;
+        if(this.frequenz>o.frequenz)
+            return 1;
+        return 0;
+        
+        }
     
 }

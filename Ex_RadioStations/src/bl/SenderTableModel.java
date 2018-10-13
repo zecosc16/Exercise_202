@@ -7,6 +7,7 @@ package bl;
 
 import bl.Sender;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -16,6 +17,7 @@ import javax.swing.table.AbstractTableModel;
 public class SenderTableModel extends AbstractTableModel{
     
     private String[] colNames = {"Sender","Frequenz","Band"};
+    private int colL=3;
 
     private ArrayList<Sender> sender = new ArrayList<>();
      private ArrayList<Sender> filtered = new ArrayList<>();
@@ -23,6 +25,8 @@ public class SenderTableModel extends AbstractTableModel{
     public void add(Sender s){
         sender.add(s);
         filtered.add(s);
+        Collections.sort(sender);
+        Collections.sort(filtered);
         fireTableRowsInserted(filtered.size()-1,filtered.size()-1);
     }
     @Override
@@ -32,7 +36,7 @@ public class SenderTableModel extends AbstractTableModel{
 
     @Override
     public int getColumnCount() {
-        return colNames.length;
+        return colL;
     }
 
     @Override
@@ -45,6 +49,16 @@ public class SenderTableModel extends AbstractTableModel{
         return colNames[column];
     }
 
+    public void updateColBand(boolean show){
+        if(show){
+            colL=3;
+        }
+        else{
+            colL=2;
+        }
+        
+        fireTableStructureChanged();
+    }
     
     
     
