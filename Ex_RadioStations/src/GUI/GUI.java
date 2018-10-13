@@ -7,6 +7,12 @@ package GUI;
 
 import bl.Sender;
 import bl.SenderTableModel;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -25,7 +31,14 @@ public class GUI extends javax.swing.JFrame {
         bl.add(new Sender("FM4", "FM", 123.1));
         bl.add(new Sender("Ö3", "AM", 92.3));
         
+        
+        JFileChooser jf = new JFileChooser(".");
+        if(jf.showOpenDialog(this)==JFileChooser.APPROVE_OPTION){
+           bl.readFile(jf.getSelectedFile());
+        }
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,6 +81,17 @@ public class GUI extends javax.swing.JFrame {
         jPopupMenu1.add(jMBandShow);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jScrollPane1.setComponentPopupMenu(jPopupMenu1);
 
@@ -106,6 +130,20 @@ public class GUI extends javax.swing.JFrame {
     private void jMBandShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMBandShowActionPerformed
         bl.updateColBand(true);
     }//GEN-LAST:event_jMBandShowActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        
+        
+    }//GEN-LAST:event_formWindowActivated
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        
+       
+    }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        bl.writeFile();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
