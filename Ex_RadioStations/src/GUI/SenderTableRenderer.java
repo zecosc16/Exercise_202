@@ -18,22 +18,22 @@ import javax.swing.table.TableCellRenderer;
  * @author oskar
  */
 public class SenderTableRenderer implements TableCellRenderer {
-    
+
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         JLabel label = new JLabel();
         Sender s = (Sender) value;
         label.setOpaque(true);
         if (s.getBand().equals("FM")) {
-            
+
             label.setBackground(Color.red);
-            
+
         } else {
             label.setBackground(Color.BLUE);
         }
         label.setFont(new Font("Courier New", Font.ITALIC, 14));
         label.setForeground(Color.lightGray);
-        
+
         switch (column) {
             case 0:
                 label.setText(s.getSendername());
@@ -46,15 +46,15 @@ public class SenderTableRenderer implements TableCellRenderer {
                 break;
             default:
                 label.setText("??");
-            
+
         }
-        
-        if(isSelected){
+
+        if (isSelected) {
             label.setBackground(Color.black);
             label.setForeground(Color.white);
         }
         return label;
-        
+
     }
-    
+
 }

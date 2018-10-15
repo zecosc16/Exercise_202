@@ -25,21 +25,22 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author oskar
  */
-public class SenderTableModel extends AbstractTableModel{
-    
-    private String[] colNames = {"Sender","Frequenz","Band"};
-    private int colL=3;
+public class SenderTableModel extends AbstractTableModel {
+
+    private String[] colNames = {"Sender", "Frequenz", "Band"};
+    private int colL = 3;
 
     private LinkedList<Sender> sender = new LinkedList<>();
-     private LinkedList<Sender> filtered = new LinkedList<>();
-    
-    public void add(Sender s){
+    private LinkedList<Sender> filtered = new LinkedList<>();
+
+    public void add(Sender s) {
         sender.add(s);
         filtered.add(s);
         Collections.sort(sender);
         Collections.sort(filtered);
-        fireTableRowsInserted(filtered.size()-1,filtered.size()-1);
+        fireTableRowsInserted(filtered.size() - 1, filtered.size() - 1);
     }
+
     @Override
     public int getRowCount() {
         return filtered.size();
@@ -60,46 +61,43 @@ public class SenderTableModel extends AbstractTableModel{
         return colNames[column];
     }
 
-    public void updateColBand(boolean show){
-        if(show){
-            colL=3;
+    public void updateColBand(boolean show) {
+        if (show) {
+            colL = 3;
+        } else {
+            colL = 2;
         }
-        else{
-            colL=2;
-        }
-        
+
         fireTableStructureChanged();
     }
-    
+
     public void readFile(File f) {
-         try {
-                BufferedReader br = new BufferedReader(new FileReader(f));
-                String line ="";
-                String[] parts;
-             try {
-                 while((line=br.readLine())!=null){
-                     parts=line.split(",");
-                     this.add(new Sender(parts[0],parts[1],Double.parseDouble(parts[2])));
-                 }
-             } catch (IOException ex) {
-                 Logger.getLogger(SenderTableModel.class.getName()).log(Level.SEVERE, null, ex);
-             }
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(f));
+            String line = "";
+            String[] parts;
+            try {
+                while ((line = br.readLine()) != null) {
+                    parts = line.split(",");
+                    this.add(new Sender(parts[0], parts[1], Double.parseDouble(parts[2])));
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(SenderTableModel.class.getName()).log(Level.SEVERE, null, ex);
             }
-         catch(ArrayIndexOutOfBoundsException ex){
-             JOptionPane.showMessageDialog(null,"File is empty");
-         }
-         catch(Exception ex){
-             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-         }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "File is empty");
+        } catch (Exception ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
-    public void writeFile(){
+
+    public void writeFile() {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("./save.csv"));
             for (Sender s : sender) {
-                bw.write(String.format("%s,%s,%f", s.getSendername(),s.getBand(),s.getFrequenz()));
+                bw.write(String.format("%s,%s,%f", s.getSendername(), s.getBand(), s.getFrequenz()));
                 bw.newLine();
             }
             System.out.println("halo");
@@ -109,8 +107,5 @@ public class SenderTableModel extends AbstractTableModel{
             Logger.getLogger(SenderTableModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    
-    
+
 }

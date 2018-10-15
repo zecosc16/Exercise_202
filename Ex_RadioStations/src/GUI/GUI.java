@@ -21,24 +21,22 @@ import javax.swing.JFileChooser;
 public class GUI extends javax.swing.JFrame {
 
     private SenderTableModel bl = new SenderTableModel();
-    
+
     public GUI() {
         initComponents();
-        
+
         radioTable.setModel(bl);
         radioTable.setDefaultRenderer(Object.class, new SenderTableRenderer());
         bl.add(new Sender("Kronehit", "FM", 182.3));
         bl.add(new Sender("FM4", "FM", 123.1));
         bl.add(new Sender("Ö3", "AM", 92.3));
         this.initTable();
-        
+
         JFileChooser jf = new JFileChooser(".");
-        if(jf.showOpenDialog(this)==JFileChooser.APPROVE_OPTION){
-           bl.readFile(jf.getSelectedFile());
+        if (jf.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            bl.readFile(jf.getSelectedFile());
         }
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -113,20 +111,21 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void initTable(){
+    public void initTable() {
         radioTable.getColumnModel().getColumn(0).setMinWidth(150);
         radioTable.getColumnModel().getColumn(1).setMinWidth(120);
-       if(radioTable.getColumnCount()==3)
-        radioTable.getColumnModel().getColumn(2).setMinWidth(50);
+        if (radioTable.getColumnCount() == 3) {
+            radioTable.getColumnModel().getColumn(2).setMinWidth(50);
+        }
     }
     private void jMAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAddActionPerformed
-        SenderDlg dl = new SenderDlg(this,true);
+        SenderDlg dl = new SenderDlg(this, true);
         dl.setVisible(true);
-        if(dl.isOk()){
+        if (dl.isOk()) {
             bl.add(dl.getS());
         }
-        
-        
+
+
     }//GEN-LAST:event_jMAddActionPerformed
 
     private void jMBandHideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMBandHideActionPerformed
@@ -140,13 +139,13 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMBandShowActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        
-        
+
+
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        
-       
+
+
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
