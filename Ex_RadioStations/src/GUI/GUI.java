@@ -25,12 +25,12 @@ public class GUI extends javax.swing.JFrame {
     public GUI() {
         initComponents();
         
-        RadioTable.setModel(bl);
-        RadioTable.setDefaultRenderer(Object.class, new SenderTableRenderer());
+        radioTable.setModel(bl);
+        radioTable.setDefaultRenderer(Object.class, new SenderTableRenderer());
         bl.add(new Sender("Kronehit", "FM", 182.3));
         bl.add(new Sender("FM4", "FM", 123.1));
         bl.add(new Sender("Ö3", "AM", 92.3));
-        
+        this.initTable();
         
         JFileChooser jf = new JFileChooser(".");
         if(jf.showOpenDialog(this)==JFileChooser.APPROVE_OPTION){
@@ -54,7 +54,7 @@ public class GUI extends javax.swing.JFrame {
         jMBandHide = new javax.swing.JMenuItem();
         jMBandShow = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
-        RadioTable = new javax.swing.JTable();
+        radioTable = new javax.swing.JTable();
 
         jMAdd.setText("hinzufügen");
         jMAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -95,7 +95,7 @@ public class GUI extends javax.swing.JFrame {
 
         jScrollPane1.setComponentPopupMenu(jPopupMenu1);
 
-        RadioTable.setModel(new javax.swing.table.DefaultTableModel(
+        radioTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -106,13 +106,19 @@ public class GUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(RadioTable);
+        jScrollPane1.setViewportView(radioTable);
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void initTable(){
+        radioTable.getColumnModel().getColumn(0).setMinWidth(150);
+        radioTable.getColumnModel().getColumn(1).setMinWidth(120);
+       if(radioTable.getColumnCount()==3)
+        radioTable.getColumnModel().getColumn(2).setMinWidth(50);
+    }
     private void jMAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAddActionPerformed
         SenderDlg dl = new SenderDlg(this,true);
         dl.setVisible(true);
@@ -125,10 +131,12 @@ public class GUI extends javax.swing.JFrame {
 
     private void jMBandHideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMBandHideActionPerformed
         bl.updateColBand(false);
+        initTable();
     }//GEN-LAST:event_jMBandHideActionPerformed
 
     private void jMBandShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMBandShowActionPerformed
         bl.updateColBand(true);
+        initTable();
     }//GEN-LAST:event_jMBandShowActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -181,11 +189,11 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable RadioTable;
     private javax.swing.JMenuItem jMAdd;
     private javax.swing.JMenuItem jMBandHide;
     private javax.swing.JMenuItem jMBandShow;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable radioTable;
     // End of variables declaration//GEN-END:variables
 }

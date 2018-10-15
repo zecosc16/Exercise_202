@@ -15,8 +15,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -28,8 +30,8 @@ public class SenderTableModel extends AbstractTableModel{
     private String[] colNames = {"Sender","Frequenz","Band"};
     private int colL=3;
 
-    private ArrayList<Sender> sender = new ArrayList<>();
-     private ArrayList<Sender> filtered = new ArrayList<>();
+    private LinkedList<Sender> sender = new LinkedList<>();
+     private LinkedList<Sender> filtered = new LinkedList<>();
     
     public void add(Sender s){
         sender.add(s);
@@ -85,6 +87,12 @@ public class SenderTableModel extends AbstractTableModel{
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
             }
+         catch(ArrayIndexOutOfBoundsException ex){
+             JOptionPane.showMessageDialog(null,"File is empty");
+         }
+         catch(Exception ex){
+             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
     
     public void writeFile(){

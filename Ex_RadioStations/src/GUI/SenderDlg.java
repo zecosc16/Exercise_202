@@ -7,6 +7,7 @@ package GUI;
 
 import bl.Sender;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -130,9 +131,17 @@ public class SenderDlg extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOKActionPerformed
-        s = new Sender(tfRadio.getText(),tfBand.getText(),Double.parseDouble(tfFrequenz.getText()));
-        ok = true;
-        this.dispose();
+        if(tfBand.getText().equals("")||tfFrequenz.equals("")||tfRadio.getText().equals(""))
+            JOptionPane.showMessageDialog(null,"Please  fill all textfields");
+        else if(!tfBand.getText().equals("FM")&&!tfBand.getText().equals("AM"))
+            JOptionPane.showMessageDialog(null,"Not  right Bandwith only FM or AM");
+        else if(Double.parseDouble(tfFrequenz.getText())<1||Double.parseDouble(tfFrequenz.getText())>999)
+            JOptionPane.showMessageDialog(null,"No proper frequenz");
+        else{
+           s = new Sender(tfRadio.getText(),tfBand.getText(),Double.parseDouble(tfFrequenz.getText()));
+           ok = true;
+           this.dispose();
+        }
     }//GEN-LAST:event_btOKActionPerformed
 
     public boolean isOk() {
